@@ -19,15 +19,15 @@ jobs:
       with:
         node-version: 14
 
-   - name: Disable package-lock.json
-     run: npm config set package-lock false
-   - name: Install CF-CLI
-     run: |
-         curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-         sudo dpkg -i cf-cli_amd64.deb
-   - name: Install node
-     run: npm install;npm cache clean --force
-   - name: Login to SAP BTP
-     run: |
+    - name: Disable package-lock.json
+      run: npm config set package-lock false
+    - name: Install CF-CLI
+      run: |
+          curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+          sudo dpkg -i cf-cli_amd64.deb
+    - name: Install node
+      run: npm install;npm cache clean --force
+    - name: Login to SAP BTP
+      run: |
          cf login -a https://api.cf.us10.hana.ondemand.com -u ${{ secrets.BTP_MAILADRESS }} -p ${{ secrets.BTP_PASSWORD }} -o bb8713batrial -s dev
          cf push
