@@ -29,5 +29,5 @@ jobs:
      run: npm install;npm cache clean --force
    - name: Login to SAP BTP
      run: |
-         cf login -a https://api.cf.us10.hana.ondemand.com -u "BTPアカウント" -p "BTPのパスワード" -o bb8713batrial -s dev
+         cf login -a https://api.cf.us10.hana.ondemand.com -u ${{ secrets.BTP_MAILADRESS }} -p ${{ secrets.BTP_PASSWORD }} -o bb8713batrial -s dev
          cf push
