@@ -1,0 +1,33 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Nodejs CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+
+   - name: Disable package-lock.json
+     run: npm config set package-lock false
+   - name: Install CF-CLI
+     run: |
+         curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+         sudo dpkg -i cf-cli_amd64.deb
+   - name: Install node
+     run: npm install;npm cache clean --force
+   - name: Login to SAP BTP
+     run: |
+         cf login -a https://api.cf.us10.hana.ondemand.com -u "BTPアカウント" -p "BTPのパスワード" -o bb8713batrial -s dev
+         cf push

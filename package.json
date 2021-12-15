@@ -1,0 +1,26 @@
+{
+    "name": "nodeapp",
+    "version": "1.0.0",
+    "engines": {
+        "node": "14.x.x"
+    },
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nanaki11/nodeApp.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/nanaki11/nodeApp/issues"
+    },
+    "homepage": "https://github.com/nanaki11/nodeApp#readme",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
